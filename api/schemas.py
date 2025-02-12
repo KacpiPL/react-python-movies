@@ -15,10 +15,8 @@ class ActorBase(BaseModel):
     name: str
     surname: str
 
-
 class ActorCreate(ActorBase):
     pass
-
 
 class Actor(ActorBase):
     id: int
@@ -33,10 +31,8 @@ class MovieBase(BaseModel):
     director: str
     description: Union[str, None] = None
 
-
 class MovieCreate(MovieBase):
     pass
-
 
 class Movie(MovieBase):
     id: int
@@ -46,4 +42,5 @@ class Movie(MovieBase):
         orm_mode = True
         getter_dict = PeeweeGetterDict
 
-
+class MovieActorLink(BaseModel):
+    actor_id: int
