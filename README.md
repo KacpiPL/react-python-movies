@@ -17,7 +17,12 @@ Welcome to the **Movie Management App**! This is a simple web application that a
 - **Frontend**: React.js
 - **Styling**: Milligram (Minimalist CSS framework)
 - **Notifications**: React-Toastify for pop-up messages
-- **Backend**: API endpoints for handling movie and actor data (not included in this repo)
+- 
+### **Backend**
+- **Framework**: FastAPI
+- **Database**: SQLite (using Peewee ORM)
+- **Validation**: Pydantic for data validation
+- **Server**: Uvicorn for running the FastAPI application
 
 ## 🔧 Installation & Setup
 
