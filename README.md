@@ -19,18 +19,6 @@ Welcome to the **Movie Management App**! This is a simple web application that a
 - **Notifications**: React-Toastify for pop-up messages
 - **Backend**: API endpoints for handling movie and actor data (not included in this repo)
 
-## 📂 Project Structure
-
-```
-📦 Movie Management App
- ┣ 📜 App.js          # Main application component
- ┣ 📜 MovieForm.js    # Form component for adding a movie
- ┣ 📜 MoviesList.js   # Component to display the list of movies
- ┣ 📜 MovieListItem.js # Single movie item component
- ┣ 📜 main.py         # Backend logic (API handling)
- ┗ 📜 README.md       # Documentation file (this file)
-```
-
 ## 🔧 Installation & Setup
 
 1. **Clone the repository**:
