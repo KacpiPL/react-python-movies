@@ -86,6 +86,18 @@ function App() {
         }
     }
 
+    async function handleRemoveActorFromMovie(movieId, actorId) {
+        const response = await fetch(`/movies/${movieId}/actors/${actorId}`, {
+            method: 'DELETE',
+        });
+        if (response.ok) {
+            alert("Actor removed from movie!");
+            fetchMovies(); // Odśwież listę filmów
+        } else {
+            alert("Error: Could not remove actor from movie.");
+        }
+    }
+
     return (
         <div className="container">
             <h1>My favourite movies to watch</h1>
@@ -94,6 +106,7 @@ function App() {
                 : <MoviesList movies={movies}
                               onDeleteMovie={(movie) => handleDeleteMovie(movie)}
                               onAssignActor={() => setAssigningActor(true)}
+                              onRemoveActor={handleRemoveActorFromMovie}
                               actors={actors}
                 />}
             {addingMovie

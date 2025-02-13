@@ -15,9 +15,12 @@ export default function MovieListItem(props) {
             {/* Wyświetlanie przypisanych aktorów */}
             {Array.isArray(props.movie.actors) && props.movie.actors.length > 0 ? (
                 <ul>
-                    {props.movie.actors.map(actor => (
-                        <li key={actor.id}>{actor.name} {actor.surname}</li>
-                    ))}
+                {props.movie.actors.map(actor => (
+                    <li key={actor.id}>
+                        {actor.name} {actor.surname} 
+                        <a onClick = {() => props.onRemoveActor(props.movie.id, actor.id)}>  Remove</a>
+                    </li>
+                ))}
                 </ul>
             ) : (
                 <p>No actors assigned</p>
