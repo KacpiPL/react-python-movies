@@ -6,6 +6,9 @@ import MoviesList from "./MoviesList";
 import ActorsList from "./ActorsList";
 import AddActorForm from "./AddActorForm";
 import AssignActorForm from "./AssignActorForm";
+import {toast, ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 function App() {
     const [movies, setMovies] = useState([]);
@@ -52,6 +55,9 @@ function App() {
       }
     
     async function handleDeleteMovie(movie) {
+        if (!window.confirm(`Are you sure you want to delete the movie "${movie.title}"?`)) {
+            return;
+        }
         const response = await fetch(`/movies/${movie.id}`, {
             method: 'DELETE',
         });
@@ -87,18 +93,24 @@ function App() {
     }
 
     async function handleRemoveActorFromMovie(movieId, actorId) {
+        if (!window.confirm(`Are you sure you want to remove the actor from the movie?`)) {
+            return;
+        }
         const response = await fetch(`/movies/${movieId}/actors/${actorId}`, {
             method: 'DELETE',
         });
         if (response.ok) {
             alert("Actor removed from movie!");
-            fetchMovies(); // Odśwież listę filmów
+            fetchMovies();
         } else {
             alert("Error: Could not remove actor from movie.");
         }
     }
 
     async function handleDeleteActor(actorId) {
+        if (!window.confirm(`Are you sure you want to delete the actor?`)) {
+            return;
+        }
         const response = await fetch(`/actors/${actorId}`, {
             method: 'DELETE',
         });
@@ -134,6 +146,7 @@ function App() {
             <h2>Actors in movies</h2>
             {assigningActor && <AssignActorForm actors={actors} movies={movies} onAssign={handleAssignActorToMovie} />}
             <button onClick={() => setAssigningActor(true)}>Assign an Actor to a Movie</button>
+            <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
         </div>
     );
 }
