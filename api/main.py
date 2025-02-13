@@ -3,7 +3,7 @@ from typing import List
 from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
-from models import ActorMovie
+from models import ActorMovie, Actor
 
 import schemas
 import models
@@ -82,3 +82,17 @@ def remove_actor_from_movie(movie_id: int, actor_id: int):
         raise HTTPException(status_code=404, detail="Actor not assigned to this movie")
 
     return {"message": "Actor removed from movie"}
+
+@app.delete("/actors/{actor_id}")
+def delete_actor(actor_id: int):
+    # Sprawdzamy, czy aktor istnieje
+    actor = Actor.get_or_none(Actor.id == actor_id)
+    if not actor:
+        raise HTTPException(status_code=404, detail="Actor not found")
+
+    # Usuwamy wszystkie powiązania aktora z filmami
+    ActorMovie.delete().where(ActorMovie.actor_id == actor_id).execute()
+
+    # Usuwamy aktora
+    actor.delete_instance()
+    return {"message": "Actor deleted successfully"}

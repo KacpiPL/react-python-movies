@@ -98,6 +98,18 @@ function App() {
         }
     }
 
+    async function handleDeleteActor(actorId) {
+        const response = await fetch(`/actors/${actorId}`, {
+            method: 'DELETE',
+        });
+        if (response.ok) {
+            alert("Actor deleted successfully!");
+            setActors(actors.filter(actor => actor.id !== actorId));
+        } else {
+            alert("Error: Could not delete actor.");
+        }
+    }
+
     return (
         <div className="container">
             <h1>My favourite movies to watch</h1>
@@ -115,7 +127,7 @@ function App() {
                 />
                 : <button onClick={() => setAddingMovie(true)}>Add a movie</button>}
             <h2>Actors</h2>
-            <ActorsList actors={actors} />
+            <ActorsList actors={actors} onDeleteActor={handleDeleteActor}/>
             {addingActor
                 ? <AddActorForm onActorSubmit={handleAddActor} />
                 : <button onClick={() => setAddingActor(true)}>Add an Actor</button>}
