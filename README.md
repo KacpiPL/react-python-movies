@@ -17,7 +17,7 @@ Welcome to the **Movie Management App**! This is a simple web application that a
 - **Frontend**: React.js
 - **Styling**: Milligram (Minimalist CSS framework)
 - **Notifications**: React-Toastify for pop-up messages
-- 
+
 ### **Backend**
 - **Framework**: FastAPI
 - **Database**: SQLite (using Peewee ORM)
